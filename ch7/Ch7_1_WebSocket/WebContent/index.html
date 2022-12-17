@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="BIG5">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	let ws;
+	function openWS(){
+		var wsUrl = "ws://localhost:8080/Ch7_1_WebSocket/echo";
+		ws = new WebSocket(wsUrl);
+		ws.onopen=(evt)=>{			
+			console.log("Connect......");
+		}
+		ws.onmessage = (evt)=>{			
+			console.log("message...."+evt.data)			
+		}
+	}
+	
+	
+	function sendMessage(){
+		var msgObj = document.getElementById("msg");
+		ws.send(msgObj.value)
+	}
+</script>
+<body>
+
+		<button type="button" onclick="openWS()">連線</button>
+		<div>
+			<input type="text" id="msg"/>
+			<button type="button" onclick="sendMessage()">傳送</button>
+		
+		</div>
+
+
+</body>
+</html>
